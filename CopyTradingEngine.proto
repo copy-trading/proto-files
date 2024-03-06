@@ -1,0 +1,34 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package copy_trading;
+
+enum AccountType{
+    Provider = 0;
+    Subscriber =1;
+}
+
+message RegisterProviderAccountRequest{
+    string TraderId = 1;
+    string ProcessId = 2;
+    AccountType AccountType = 3;
+}
+
+message RegisterProviderAccountResponse{
+    string AccountId = 1;
+}
+
+message GetAccountsRequest{
+    string TraderId = 1; 
+} 
+
+message CopyTradingAccount{
+    string AccountId = 1;
+    AccountType AccountType = 2;
+    double Balance = 3;
+}
+
+service CopyTradingEngine {
+    rpc RegisterAccount(RegisterProviderAccountRequest) returns (RegisterProviderAccountResponse);
+    rpc GetAccounts(GetAccountsRequest) returns (stream CopyTradingAccount);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
