@@ -7,13 +7,13 @@ enum AccountType{
     Subscriber =1;
 }
 
-message RegisterProviderAccountRequest{
+message RegisterAccountRequest{
     string TraderId = 1;
     string ProcessId = 2;
     AccountType AccountType = 3;
 }
 
-message RegisterProviderAccountResponse{
+message RegisterAccountResponse{
     string AccountId = 1;
 }
 
@@ -28,7 +28,7 @@ message CopyTradingAccount{
 }
 
 service CopyTradingEngine {
-    rpc RegisterAccount(RegisterProviderAccountRequest) returns (RegisterProviderAccountResponse);
+    rpc RegisterAccount(RegisterAccountRequest) returns (RegisterAccountResponse);
     rpc GetAccounts(GetAccountsRequest) returns (stream CopyTradingAccount);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
