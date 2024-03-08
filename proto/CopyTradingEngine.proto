@@ -7,6 +7,12 @@ enum AccountType{
     Subscriber =1;
 }
 
+enum ResponseStatus{
+    Success = 0;
+    ProviderAccountNotFound = 1;
+}
+
+
 message RegisterAccountRequest{
     string TraderId = 1;
     string ProcessId = 2;
@@ -27,8 +33,30 @@ message CopyTradingAccount{
     double Balance = 3;
 }
 
+message SubscribeToProviderRequest{
+    string ProviderTraderId = 1;
+    string ProviderAccountId = 2;
+    string SubscriberTraderId = 3;
+    string SubscriberAccountId = 4;
+}
+
+message UnSubscribeFromProviderRequest{
+    string ProviderTraderId = 1;
+    string ProviderAccountId = 2;
+    string SubscriberTraderId = 3;
+    string SubscriberAccountId = 4;
+}
+
+message SubscribeToProviderResponse{
+    ResponseStatus Status = 1;
+}
+
 service CopyTradingEngine {
     rpc RegisterAccount(RegisterAccountRequest) returns (RegisterAccountResponse);
     rpc GetAccounts(GetAccountsRequest) returns (stream CopyTradingAccount);
+
+    rpc SubscribeToProvider(SubscribeToProviderRequest) returns (SubscribeToProviderResponse);
+    rpc UnSubscribeFromProvider(UnSubscribeFromProviderRequest) returns (SubscribeToProviderResponse);
+    
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
