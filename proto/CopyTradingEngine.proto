@@ -51,12 +51,16 @@ message SubscribeToProviderResponse{
     ResponseStatus Status = 1;
 }
 
+message UnSubscribeFromProviderResponse{
+    ResponseStatus Status = 1;
+}
+
 service CopyTradingEngine {
     rpc RegisterAccount(RegisterAccountRequest) returns (RegisterAccountResponse);
     rpc GetAccounts(GetAccountsRequest) returns (stream CopyTradingAccount);
 
     rpc SubscribeToProvider(SubscribeToProviderRequest) returns (SubscribeToProviderResponse);
-    rpc UnSubscribeFromProvider(UnSubscribeFromProviderRequest) returns (SubscribeToProviderResponse);
+    rpc UnSubscribeFromProvider(UnSubscribeFromProviderRequest) returns (UnSubscribeFromProviderResponse);
     
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
