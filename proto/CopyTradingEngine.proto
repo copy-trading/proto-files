@@ -8,7 +8,7 @@ enum AccountType{
 }
 
 enum ResponseStatus{
-    Success = 0;
+    Ok = 0;
     ProviderAccountNotFound = 1;
 }
 
