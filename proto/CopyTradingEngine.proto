@@ -28,10 +28,21 @@ message GetAccountsRequest{
     string TraderId = 1; 
 } 
 
-message CopyTradingAccount{
+
+message GetAccountsResponse{
+    repeated ProviderAccount Providers = 1;
+    repeated SubscriberAccount Subscribers = 2;
+}
+
+message ProviderAccount{
     string AccountId = 1;
-    AccountType AccountType = 2;
-    double Balance = 3;
+    int32 Subscribed = 2;
+}
+
+message SubscriberAccount{
+    string AccountId = 1;
+    string SubscribedToProviderTraderId = 2;
+    string SubscribedToProviderAccountId = 3;
 }
 
 message SubscribeToProviderRequest{
@@ -82,7 +93,7 @@ message SubscriberAccountAmount{
 
 service CopyTradingEngine {
     rpc RegisterAccount(RegisterAccountRequest) returns (RegisterAccountResponse);
-    rpc GetAccounts(GetAccountsRequest) returns (stream CopyTradingAccount);
+    rpc GetAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
     rpc SubscribeToProvider(SubscribeToProviderRequest) returns (SubscribeToProviderResponse);
     rpc UnSubscribeFromProvider(UnSubscribeFromProviderRequest) returns (UnSubscribeFromProviderResponse);
