@@ -64,9 +64,20 @@ message GetTopProvidersRequest{
 }
 
 
-message ProviderAccount{
+message TopProviderAccount{
     string TraderId = 1;
     string AccountId = 2;
+}
+
+
+message GetSubscribersAmountRequest{
+    string TraderId = 1;
+}
+
+message SubscriberAccountAmount{
+    string TraderId = 1;
+    string AccountId = 2;
+    int32 Amount = 3;
 }
 
 service CopyTradingEngine {
@@ -76,7 +87,9 @@ service CopyTradingEngine {
     rpc SubscribeToProvider(SubscribeToProviderRequest) returns (SubscribeToProviderResponse);
     rpc UnSubscribeFromProvider(UnSubscribeFromProviderRequest) returns (UnSubscribeFromProviderResponse);
 
-    rpc GetTopProviders(GetTopProvidersRequest) returns (stream ProviderAccount);
+    rpc GetTopProviders(GetTopProvidersRequest) returns (stream TopProviderAccount);
+
+    rpc GetSubscribersAmount(GetSubscribersAmountRequest) returns (stream SubscriberAccountAmount);
     
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
