@@ -2,6 +2,12 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package copy_trading;
 
+
+message CopyTradingAccountIdGrpcModel{
+    string TraderId = 1;
+    string AccountId = 2;
+}
+
 enum AccountType{
     Provider = 0;
     Subscriber =1;
@@ -30,33 +36,28 @@ message GetAccountsRequest{
 
 
 message GetAccountsResponse{
-    repeated ProviderAccount Providers = 1;
-    repeated SubscriberAccount Subscribers = 2;
+    repeated ProviderAccountGrpcModel Providers = 1;
+    repeated SubscriberAccountGrpcModel Subscribers = 2;
 }
 
-message ProviderAccount{
+message ProviderAccountGrpcModel{
     string AccountId = 1;
-    int32 Subscribed = 2;
+    int32 HasSubscribesAmount = 2;
 }
 
-message SubscriberAccount{
+message SubscriberAccountGrpcModel{
     string AccountId = 1;
-    string SubscribedToProviderTraderId = 2;
-    string SubscribedToProviderAccountId = 3;
+    repeated CopyTradingAccountIdGrpcModel ConnectedToProviders = 2;
 }
 
 message SubscribeToProviderRequest{
-    string ProviderTraderId = 1;
-    string ProviderAccountId = 2;
-    string SubscriberTraderId = 3;
-    string SubscriberAccountId = 4;
+    CopyTradingAccountIdGrpcModel Provider = 1;
+    CopyTradingAccountIdGrpcModel Subscriber = 2;
 }
 
 message UnSubscribeFromProviderRequest{
-    string ProviderTraderId = 1;
-    string ProviderAccountId = 2;
-    string SubscriberTraderId = 3;
-    string SubscriberAccountId = 4;
+    CopyTradingAccountIdGrpcModel Provider = 1;
+    CopyTradingAccountIdGrpcModel Subscriber = 2;
 }
 
 message SubscribeToProviderResponse{
@@ -75,20 +76,13 @@ message GetTopProvidersRequest{
 }
 
 
-message TopProviderAccount{
-    string TraderId = 1;
-    string AccountId = 2;
-}
-
-
 message GetSubscribersAmountRequest{
     string TraderId = 1;
 }
 
 message SubscriberAccountAmount{
-    string TraderId = 1;
-    string AccountId = 2;
-    int32 Amount = 3;
+    CopyTradingAccountIdGrpcModel Subscriber = 1;
+    int32 Amount = 2;
 }
 
 service CopyTradingEngine {
@@ -98,7 +92,7 @@ service CopyTradingEngine {
     rpc SubscribeToProvider(SubscribeToProviderRequest) returns (SubscribeToProviderResponse);
     rpc UnSubscribeFromProvider(UnSubscribeFromProviderRequest) returns (UnSubscribeFromProviderResponse);
 
-    rpc GetTopProviders(GetTopProvidersRequest) returns (stream TopProviderAccount);
+    rpc GetTopProviders(GetTopProvidersRequest) returns (stream CopyTradingAccountIdGrpcModel);
 
     rpc GetSubscribersAmount(GetSubscribersAmountRequest) returns (stream SubscriberAccountAmount);
     
