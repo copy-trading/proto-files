@@ -47,7 +47,8 @@ message ProviderAccountGrpcModel{
 
 message SubscriberAccountGrpcModel{
     string AccountId = 1;
-    repeated CopyTradingAccountIdGrpcModel ConnectedToProviders = 2;
+    double VolumeCopy = 2; 
+    repeated CopyTradingAccountIdGrpcModel ConnectedToProviders = 3;
 }
 
 message SubscribeToProviderRequest{
