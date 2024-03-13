@@ -20,10 +20,15 @@ enum ResponseStatus{
 }
 
 
-message RegisterAccountRequest{
+message RegisterProviderAccountRequest{
     string TraderId = 1;
     string ProcessId = 2;
-    AccountType AccountType = 3;
+}
+
+message RegisterSubscriberAccountRequest{
+    string TraderId = 1;
+    double VolumeCopy = 2;
+    string ProcessId = 3;
 }
 
 message RegisterAccountResponse{
@@ -87,7 +92,10 @@ message SubscriberAccountAmount{
 }
 
 service CopyTradingEngine {
-    rpc RegisterAccount(RegisterAccountRequest) returns (RegisterAccountResponse);
+    rpc RegisterProviderAccount(RegisterProviderAccountRequest) returns (RegisterAccountResponse);
+
+    rpc RegisterSubscriberAccount(RegisterSubscriberAccountRequest) returns (RegisterAccountResponse);
+
     rpc GetAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
     rpc SubscribeToProvider(SubscribeToProviderRequest) returns (SubscribeToProviderResponse);
