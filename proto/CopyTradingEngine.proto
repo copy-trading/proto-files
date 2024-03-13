@@ -51,12 +51,12 @@ message ProviderAccountGrpcModel{
 
 message SubscriberAccountGrpcModel{
     string AccountId = 1;
-    repeated SubscribeGrpcModel ConnectedToProviders = 2;
+    repeated ConnectedToProviderModel ConnectedToProviders = 2;
 }
 
 
-message SubscribeGrpcModel{
-    CopyTradingAccountIdGrpcModel ToProvider = 1;
+message ConnectedToProviderModel {
+    CopyTradingAccountIdGrpcModel Provider = 1;
     double VolumeCopy = 2;
 }
 
