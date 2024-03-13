@@ -27,8 +27,7 @@ message RegisterProviderAccountRequest{
 
 message RegisterSubscriberAccountRequest{
     string TraderId = 1;
-    double VolumeCopy = 2;
-    string ProcessId = 3;
+    string ProcessId = 2;
 }
 
 message RegisterAccountResponse{
@@ -52,13 +51,19 @@ message ProviderAccountGrpcModel{
 
 message SubscriberAccountGrpcModel{
     string AccountId = 1;
-    double VolumeCopy = 2; 
-    repeated CopyTradingAccountIdGrpcModel ConnectedToProviders = 3;
+    repeated SubscribeGrpcModel ConnectedToProviders = 2;
+}
+
+
+message SubscribeGrpcModel{
+    CopyTradingAccountIdGrpcModel ToProvider = 1;
+    double VolumeCopy = 2;
 }
 
 message SubscribeToProviderRequest{
     CopyTradingAccountIdGrpcModel Provider = 1;
     CopyTradingAccountIdGrpcModel Subscriber = 2;
+    double VolumeCopy = 3;
 }
 
 message UnSubscribeFromProviderRequest{
@@ -105,10 +110,7 @@ message UpdateSubscriberVolumeCopyResponse{
 
 service CopyTradingEngine {
     rpc RegisterProviderAccount(RegisterProviderAccountRequest) returns (RegisterAccountResponse);
-
     rpc RegisterSubscriberAccount(RegisterSubscriberAccountRequest) returns (RegisterAccountResponse);
-
-    rpc UpdateSubscriberVolumeCopy(UpdateSubscriberVolumeCopyRequest) returns (UpdateSubscriberVolumeCopyResponse);
 
     rpc GetAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
