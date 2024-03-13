@@ -91,10 +91,24 @@ message SubscriberAccountAmount{
     int32 Amount = 2;
 }
 
+message UpdateSubscriberVolumeCopyRequest{
+    string TraderId = 1;
+    string AccountId = 2;
+    double VolumeCopy = 3;
+
+} 
+
+
+message UpdateSubscriberVolumeCopyResponse{
+    ResponseStatus Status = 1;
+}
+
 service CopyTradingEngine {
     rpc RegisterProviderAccount(RegisterProviderAccountRequest) returns (RegisterAccountResponse);
 
     rpc RegisterSubscriberAccount(RegisterSubscriberAccountRequest) returns (RegisterAccountResponse);
+
+    rpc UpdateSubscriberVolumeCopy(UpdateSubscriberVolumeCopyRequest) returns (UpdateSubscriberVolumeCopyResponse);
 
     rpc GetAccounts(GetAccountsRequest) returns (GetAccountsResponse);
 
