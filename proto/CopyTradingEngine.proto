@@ -17,6 +17,7 @@ enum ResponseStatus{
     Ok = 0;
     ProviderAccountNotFound = 1;
     SubscriberAccountNotFound = 2;
+    MinimalVolumeCopyIsViolated = 3;
 }
 
 
