@@ -18,6 +18,7 @@ enum ResponseStatus{
     ProviderAccountNotFound = 1;
     SubscriberAccountNotFound = 2;
     MinimalVolumeCopyIsViolated = 3;
+    MaxAmountOfAccountsExceed = 4;
 }
 
 
