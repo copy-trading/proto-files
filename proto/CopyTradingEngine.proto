@@ -33,7 +33,8 @@ message RegisterSubscriberAccountRequest{
 }
 
 message RegisterAccountResponse{
-    string AccountId = 1;
+    ResponseStatus Status = 1;
+    string AccountId = 2;
 }
 
 message GetAccountsRequest{
