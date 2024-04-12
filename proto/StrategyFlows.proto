@@ -12,7 +12,7 @@ message UpdateStrategyInfoRequest{
   optional int64 Performance = 5;
   optional double ProviderFee = 6;
   optional double PortfolioEquity = 7;
-  optional string Text = 8;
+  optional string Description = 8;
 }
 
 message GetStrategyInfoRequest{
@@ -31,7 +31,7 @@ message StrategyGrpcModel{
   optional int64 Performance = 4;
   optional double ProviderFee = 5;
   optional double PortfolioEquity = 6;
-  optional string Text = 7;
+  optional string Description = 7;
 }
 
 service StrategyFlows {
