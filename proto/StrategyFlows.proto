@@ -24,7 +24,7 @@ message GetStrategyInfoResponse{
 }
 
 message StrategyGrpcModel{
-  string AccountId = 1;
+  string ProviderId = 1;
   optional string Name = 2;
   optional int32 RiskScore = 3;
   optional int64 Performance = 4;
