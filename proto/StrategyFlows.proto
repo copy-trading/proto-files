@@ -1,0 +1,43 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package copy_trading;
+
+
+
+message UpdateStrategyInfoRequest{
+  string TraderId = 1;
+  string ProviderId = 2;
+  optional string Name = 3;
+  optional int32 RiskScore = 4;
+  optional int64 Performance = 5;
+  optional float ProviderFee = 6;
+  optional string Text = 7;
+}
+
+message GetStrategyInfoRequest{
+  string TraderId = 1;
+  string ProviderId = 2;
+} 
+
+message GetStrategyInfoResponse{
+  optional StrategyModel Model = 1;
+}
+
+message StrategyModel{
+  string Id = 1;
+  optional string Name = 2;
+  optional int32 RiskScore = 3;
+  optional int64 Performance = 4;
+  optional float ProviderFee = 5;
+  optional string Text = 6;
+}
+
+
+
+
+service StrategyFlows {
+    rpc UpdateStrategyInfo(UpdateStrategyInfoRequest) returns (google.protobuf.Empty);
+    rpc GetStrategyInfo(GetStrategyInfoRequest) returns (GetStrategyInfoResponse);
+
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
