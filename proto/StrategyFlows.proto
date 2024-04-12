@@ -28,7 +28,7 @@ message StrategyGrpcModel{
   optional string Name = 2;
   optional int32 RiskScore = 3;
   optional int64 Performance = 4;
-  optional float ProviderFee = 5;
+  optional double ProviderFee = 5;
   optional string Text = 6;
 }
 
