@@ -1,6 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-package copy_trading;
+package copy_trading_strategy_flows;
 
 
 
