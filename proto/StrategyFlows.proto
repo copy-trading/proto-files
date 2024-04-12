@@ -10,7 +10,7 @@ message UpdateStrategyInfoRequest{
   optional string Name = 3;
   optional int32 RiskScore = 4;
   optional int64 Performance = 5;
-  optional float ProviderFee = 6;
+  optional double ProviderFee = 6;
   optional string Text = 7;
 }
 
