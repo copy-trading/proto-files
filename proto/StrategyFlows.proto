@@ -9,7 +9,7 @@ message UpdateStrategyInfoRequest{
   string ProviderId = 2;
   optional string Name = 3;
   optional int32 RiskScore = 4;
-  optional int64 Performance = 5;
+  optional double Performance = 5;
   optional double ProviderFee = 6;
   optional double PortfolioEquity = 7;
   optional string Description = 8;
