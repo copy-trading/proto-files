@@ -20,10 +20,10 @@ message GetStrategyInfoRequest{
 } 
 
 message GetStrategyInfoResponse{
-  optional StrategyModel Model = 1;
+  optional StrategyGrpcModel Model = 1;
 }
 
-message StrategyModel{
+message StrategyGrpcModel{
   string Id = 1;
   optional string Name = 2;
   optional int32 RiskScore = 3;
@@ -31,9 +31,6 @@ message StrategyModel{
   optional float ProviderFee = 5;
   optional string Text = 6;
 }
-
-
-
 
 service StrategyFlows {
     rpc UpdateStrategyInfo(UpdateStrategyInfoRequest) returns (google.protobuf.Empty);
