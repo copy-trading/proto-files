@@ -24,12 +24,16 @@ enum ResponseStatus{
 
 message RegisterProviderAccountRequest{
     string TraderId = 1;
-    string ProcessId = 2;
+    string AccountCurrency = 2;
+    double Leverage = 3;
+    string ProcessId = 4;
 }
 
 message RegisterSubscriberAccountRequest{
     string TraderId = 1;
-    string ProcessId = 2;
+    string AccountCurrency = 2;
+    double Leverage = 3;
+    string ProcessId = 4;
 }
 
 message RegisterAccountResponse{
